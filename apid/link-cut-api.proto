@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package link_cut_api;
+
+option go_package = "./;link-cut-api";
+
+
+service LinkCut {
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc Get   (GetRequest) returns (GetResponse);
+}
+message CreateRequest {
+  string url = 1;
+}
+message CreateResponse {
+  string url = 1;
+}
+
+message GetRequest {
+  string url = 1;
+}
+message GetResponse {
+  string url = 1;
+}
+

@@ -1,23 +1,32 @@
 syntax = "proto3";
 
 package link_cut_api;
-option go_package = ".;link_cut_api";
+option go_package = "./;link_cut_api";
 
+
+// The greeting service definition.
 service LinkCut {
-  rpc Create(CreateRequest) returns (CreateResponse);
-  rpc Get   (GetRequest) returns (GetResponse);
+  // Sends a greeting
+  rpc Create (CreateRequest) returns (CreateReply) {}
+  rpc Get (GetRequest) returns (GetReply) {}
+
 }
+
+// The request message containing the user's name.
 message CreateRequest {
   string url = 1;
 }
-message CreateResponse {
+
+// The response message containing the greetings
+message CreateReply {
   string url = 1;
 }
-
+// The request message containing the user's name.
 message GetRequest {
   string url = 1;
 }
-message GetResponse {
+
+// The response message containing the greetings
+message GetReply {
   string url = 1;
 }
-

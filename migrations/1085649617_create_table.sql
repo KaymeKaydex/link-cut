@@ -3,13 +3,9 @@
 
 CREATE TABLE IF NOT EXISTS urls
 (
-    short      varchar(5)                   PRIMARY KEY NOT NULL,
-    long       varchar(100)                 PRIMARY KEY NOT NULL,
-    used_at    timestamp with time zone     NOT NULL
-);
-
-CREATE INDEX IF NOT EXISTS idx_short_urls
-    ON urls (short);
+    short_url      varchar(5)                  PRIMARY KEY NOT NULL,
+    long_url       varchar(100)                UNIQUE NOT NULL
+    );
 
 -- +goose StatementEnd
 
@@ -18,7 +14,7 @@ CREATE INDEX IF NOT EXISTS idx_short_urls
 -- +goose Down
 -- +goose StatementBegin
 
-drop table if exists news;
-drop index if exists idx_news_deleted_at;
+drop table if exists urls;
+drop index if exists idx_urls;
 
 -- +goose StatementEnd

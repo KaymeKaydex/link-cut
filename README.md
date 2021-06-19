@@ -1,2 +1,2 @@
-# link-cut
+# Link cut
 Link shortening service
