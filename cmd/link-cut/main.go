@@ -8,6 +8,10 @@ import (
 )
 
 func main()  {
+
+	jww.SetLogThreshold(jww.LevelTrace)
+	jww.SetStdoutThreshold(jww.LevelInfo)
+
 	ctx := context.Background()
 
 	if err := godotenv.Load(); err != nil {

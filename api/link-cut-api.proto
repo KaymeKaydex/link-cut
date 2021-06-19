@@ -7,9 +7,8 @@ option go_package = "./;link_cut_api";
 // The greeting service definition.
 service LinkCut {
   // Sends a greeting
-  rpc Create (CreateRequest) returns (CreateReply) {}
-  rpc Get (GetRequest) returns (GetReply) {}
-
+  rpc Create (CreateRequest) returns (CreateReply);
+  rpc Get (GetRequest) returns (GetReply);
 }
 
 // The request message containing the user's name.

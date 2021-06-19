@@ -1,10 +1,10 @@
 -- +goose Up
 -- +goose StatementBegin
 
-CREATE TABLE IF NOT EXISTS urls
+CREATE TABLE IF NOT EXISTS url_container
 (
     short_url      varchar(5)                  PRIMARY KEY NOT NULL,
-    long_url       varchar(100)                UNIQUE NOT NULL
+    long_url       text                        UNIQUE NOT NULL
     );
 
 -- +goose StatementEnd
@@ -14,7 +14,6 @@ CREATE TABLE IF NOT EXISTS urls
 -- +goose Down
 -- +goose StatementBegin
 
-drop table if exists urls;
-drop index if exists idx_urls;
+drop table if exists url_container;
 
 -- +goose StatementEnd
