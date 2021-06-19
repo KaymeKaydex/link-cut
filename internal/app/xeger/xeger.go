@@ -7,6 +7,8 @@ import (
 	"github.com/takahiromiyamoto/go-xeger"
 )
 
+// Генерация случайной последовтельности из n символов, с использованием regexp
+
 func GetRandomSequence(lenght int) (string, error){
 	if lenght <1 {
 		jww.INFO.Println("Invalid lenght : ",lenght)

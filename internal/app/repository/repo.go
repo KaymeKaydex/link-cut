@@ -13,18 +13,21 @@ func New(db *gorm.DB) *Repository {
 	return &Repository{db: db}
 }
 
+func (r *Repository) CreateContainer(ctx context.Context, c *model.URLContainer)(error) {
+	return r.db.WithContext(ctx).Create(c).Error
+}
 
 func (r *Repository) Exists(ctx context.Context,url IURL)(bool)  {
 	return url.Exists(ctx,r)
 }
-func (r *Repository) GetContainer(ctx context.Context,url IURL)(*model.URLContainer)  {
+func (r *Repository) GetContainer(ctx context.Context,url IURL)(*model.URLContainer,error)  {
 	return url.GetContainer(ctx, r)
 }
 
 
 type IURL interface {
 	Exists(ctx context.Context, r *Repository)(bool)
-	GetContainer(ctx context.Context, r *Repository)(*model.URLContainer)
+	GetContainer(ctx context.Context, r *Repository)(*model.URLContainer, error)
 }
 
 // For SHORT URL
@@ -52,6 +55,7 @@ func (url *ShortURL)GetContainer(ctx context.Context, r *Repository)(*model.URLC
 }
 
 // For LONG URL
+
 type LongURL struct {
 	URL string
 }

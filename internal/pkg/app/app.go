@@ -14,7 +14,7 @@ import (
 )
 
 type App struct {
-	r *repository.Repository
+	s *server.Server
 }
 
 func NewApp(ctx context.Context) (*App,error) {
@@ -23,9 +23,13 @@ func NewApp(ctx context.Context) (*App,error) {
 		jww.ERROR.Println("Cant open postgers connection",err)
 		return nil, err
 	}
-
+	r := repository.New(db)
+	serv,err := server.NewServer(r)
+	if err != nil {
+		jww.FATAL.Println("Cant create server")
+	}
 	return &App{
-		r: repository.New(db),
+		s: serv,
 	},nil
 
 }
@@ -39,7 +43,7 @@ func (a *App) Run(ctx context.Context) error {
 	}
 	s := grpc.NewServer()
 
-	pb.RegisterLinkCutServer(s,&server.Server{})
+	pb.RegisterLinkCutServer(s,a.s)
 
 	jww.INFO.Printf("server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
