@@ -6,7 +6,7 @@ Bulding bin file into ./bin/
 ```shell
 make build
 ```
-####Run
+#### Run
 How to fast run application
 ```shell
 cp .dist.env .env
@@ -14,5 +14,5 @@ docker-compose up -d
 make migrate
 make build
 ```
-##Future
+## Future
 1. New config type & config parse
