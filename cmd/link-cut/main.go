@@ -7,7 +7,7 @@ import (
 	jww "github.com/spf13/jwalterweatherman"
 )
 
-func main()  {
+func main() {
 
 	jww.SetLogThreshold(jww.LevelTrace)
 	jww.SetStdoutThreshold(jww.LevelInfo)
@@ -19,14 +19,14 @@ func main()  {
 		return
 	}
 
-	app,err := app.NewApp(ctx)
-	if err!= nil {
+	a, err := app.NewApp(ctx)
+	if err != nil {
 		jww.ERROR.Println("Cant create new application : ", err)
 		return
 	}
 
-	err = app.Run(ctx)
-	if  err!= nil {
+	err = a.Run(ctx)
+	if err != nil {
 		jww.ERROR.Println("Cant run application : ", err)
 		return
 	}
