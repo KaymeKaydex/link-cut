@@ -7,17 +7,17 @@ import (
 	"github.com/takahiromiyamoto/go-xeger"
 )
 
-// Генерация случайной последовтельности из n символов, с использованием regexp
+// Генерация случайной последовтельности из n символов, с использованием regexp в библиотеке Xeger
 
-func GetRandomSequence(lenght int) (string, error){
-	if lenght <1 {
-		jww.INFO.Println("Invalid lenght : ",lenght)
-		return "", errors.New("Invalid lenght")
+func GetRandomSequence(length int) (string, error) {
+	if length < 1 {
+		jww.INFO.Println("Invalid length : ", length)
+		return "", errors.New("Invalid length")
 	}
-	x, err := xeger.NewXeger(fmt.Sprintf("[a-zA-Z0-9\\_]{%d}",lenght))
+	x, err := xeger.NewXeger(fmt.Sprintf("[a-zA-Z0-9\\_]{%d}", length))
 	if err != nil {
 		jww.INFO.Println("Cant generate sequence", err)
-		return "",err
+		return "", err
 	}
-	return x.Generate(),nil
+	return x.Generate(), nil
 }

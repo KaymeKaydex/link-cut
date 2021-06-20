@@ -3,7 +3,7 @@
 
 CREATE TABLE IF NOT EXISTS url_container
 (
-    short_url      varchar(5)                  PRIMARY KEY NOT NULL,
+    short_url      varchar(10)                 PRIMARY KEY NOT NULL,
     long_url       text                        UNIQUE NOT NULL
     );
 

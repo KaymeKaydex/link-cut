@@ -6,38 +6,38 @@ import (
 
 func TestGetRandomSequence(t *testing.T) {
 	testTable := []struct {
-		lenght    int
+		length    int
 		errExists bool
 	}{
 		{
-			lenght:    5,
+			length:    5,
 			errExists: false,
 		},
 		{
-			lenght:    -1,
+			length:    -1,
 			errExists: true,
 		},
 		{
-			lenght:    0,
+			length:    0,
 			errExists: true,
 		},
 		{
-			lenght:    1,
+			length:    1,
 			errExists: false,
 		},
 	}
 	for _, testCase := range testTable {
 
-		r, err := GetRandomSequence(testCase.lenght)
+		r, err := GetRandomSequence(testCase.length)
 
 		// Проверка на наличие ошибок для граничных значений
 		if (err == nil) == testCase.errExists {
-			t.Errorf("No error for invalid input value %d", testCase.lenght)
+			t.Errorf("No error for invalid input value %d", testCase.length)
 		}
 
 		// Проверка на соответсвие длинны запроса и результата
-		if testCase.lenght > 0 && testCase.lenght != len(r) {
-			t.Errorf("Invalid lenght of returned value, expected : %d, result: %d", testCase.lenght, len(r))
+		if testCase.length > 0 && testCase.length != len(r) {
+			t.Errorf("Invalid length of returned value, expected : %d, result: %d", testCase.length, len(r))
 		}
 	}
 }
