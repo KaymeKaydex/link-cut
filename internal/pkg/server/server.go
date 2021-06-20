@@ -73,7 +73,7 @@ func (s *Server) Create(ctx context.Context, req *pb.CreateRequest) (*pb.CreateR
 	return &pb.CreateReply{Url: DomainName + "/" + shortStr}, nil
 }
 func (s *Server) Get(ctx context.Context, req *pb.GetRequest) (*pb.GetReply, error) {
-	jww.DEBUG.Println("New get request :", req.Url)
+	jww.INFO.Println("New get request :", req.Url)
 
 	// Пытаемся получить контейнер по сокращенной ссылке
 
