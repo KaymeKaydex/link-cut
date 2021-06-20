@@ -2,8 +2,9 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/KaymeKaydex/link-cut.git/internal/app/model"
+	"github.com/KaymeKaydex/link-cut.git/internal/app/repository"
+	"github.com/joho/godotenv"
 	jww "github.com/spf13/jwalterweatherman"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -21,16 +22,14 @@ func main() {
 	// Запуск фонового контекста
 	ctx := context.Background()
 
-	// Создаем DSN
-	dsn := fmt.Sprintf("host='%s' port='%s' user='%s' password='%s' dbname='%s' sslmode='disable'",
-		"0.0.0.0",
-		"5432",
-		"user",
-		"pass",
-		"link-cut")
+	// Загружаем переменные окружения
+	if err := godotenv.Load(); err != nil {
+		jww.ERROR.Println("No .env file loaded")
+		return
+	}
 
 	// Создание подключения с базой
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(repository.GetDSN()), &gorm.Config{})
 	if err != nil {
 		jww.INFO.Println("Cant open postgers connection", err)
 		return
