@@ -1,7 +1,7 @@
 # Link cut
 Link shortening service
-##Commands
-####Build
+## Commands
+#### Build
 Bulding bin file into ./bin/
 ```shell
 make build
