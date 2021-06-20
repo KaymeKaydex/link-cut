@@ -4,28 +4,32 @@ package link_cut_api;
 option go_package = "./;link_cut_api";
 
 
-// The greeting service definition.
+// Объявление сервиса для создания коротких ссылок
+
 service LinkCut {
-  // Sends a greeting
-  rpc Create (CreateRequest) returns (CreateReply);
-  rpc Get (GetRequest) returns (GetReply);
+  rpc Create (CreateRequest) returns (CreateReply); // Принимает длинную ссылку возвращает короткую
+  rpc Get (GetRequest) returns (GetReply);          // Принимает короткую ссылку возвращает длинную
 }
 
-// The request message containing the user's name.
+// Входящее сообщение для Create метода
+
 message CreateRequest {
   string url = 1;
 }
 
-// The response message containing the greetings
+// Исходящее сообщение для Create метода
+
 message CreateReply {
   string url = 1;
 }
-// The request message containing the user's name.
+// Входящее сообщение для Get метода
+
 message GetRequest {
   string url = 1;
 }
 
-// The response message containing the greetings
+// Исходящее сообщение для Get метода
+
 message GetReply {
   string url = 1;
 }
