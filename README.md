@@ -6,7 +6,7 @@ Bulding bin file into ./bin/
 ```shell
 make build
 ```
-## Run
+#### Run
 How to fast run application
 ```shell
 cp .dist.env .env
