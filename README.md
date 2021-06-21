@@ -16,3 +16,4 @@ make build
 ```
 ## Future
 1. New config type & config parse
+2. Add all constants with the config
