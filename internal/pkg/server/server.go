@@ -12,8 +12,9 @@ import (
 )
 
 const (
-	DomainName = "l.ru"
-	RetryCount = 100
+	MaxLinkLenght = 10
+	DomainName    = "l.ru"
+	RetryCount    = 100
 )
 
 type Server struct {
@@ -42,12 +43,21 @@ func (s *Server) Create(ctx context.Context, req *pb.CreateRequest) (*pb.CreateR
 
 	// Пытаемся сгенерить последовательность
 	shortStr := ""
-	for i := 0; i < RetryCount; i++ {
-		randStr, err := xeger.GetRandomSequence(5)
+	for i := 0; i < RetryCount+1; i++ {
+
+		// Если все попытки сгенерировать короткую ссылку не прошли
+		if i == RetryCount {
+			return nil, errors.New("max retry count")
+		}
+
+		// Получание сгенерированной строки из допустимых символов
+		randStr, err := xeger.GetRandomSequence(MaxLinkLenght - len(DomainName) - 1)
 		if err != nil {
 			jww.INFO.Println("Xeger generate exception")
 			continue
 		}
+
+		// Если такая коротка ссылка уже есть в базе повторяем цикл
 		if s.r.Exists(ctx, &repository.ShortURL{URL: DomainName + "/" + randStr}) {
 			jww.INFO.Println("New random str exists in DB")
 			continue
