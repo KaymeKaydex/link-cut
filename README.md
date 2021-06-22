@@ -20,3 +20,4 @@ make build
 1. New config type & config parse
 2. Replace all constants with the config
 3. Endpoint module 
+4. Metrics
