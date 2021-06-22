@@ -16,7 +16,7 @@ docker-compose up -d
 make migrate
 make build
 ```
-## Future :round_pushpin:
+## Future 
 1. New config type & config parse
 2. Replace all constants with the config
 3. Endpoint module 
