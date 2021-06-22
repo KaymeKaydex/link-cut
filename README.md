@@ -1,5 +1,7 @@
 # Link cut
 Link shortening service
+## About
+:link: Through the grpc protocol, the service accepts a link and shortens it for a fictitious domain l.ru 
 ## Commands
 #### Build
 Bulding bin file into ./bin/
@@ -16,4 +18,4 @@ make build
 ```
 ## Future
 1. New config type & config parse
-2. Add all constants with the config
+2. Replace all constants with the config
