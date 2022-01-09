@@ -5,8 +5,7 @@ import (
 	"os"
 )
 
-// Возвращает DSN строку, сгенерированную из переменных окружения
-
+// GetDSN возвращает DSN строку, сгенерированную из переменных окружения
 func GetDSN() string {
 	return fmt.Sprintf("host='%s' port='%s' user='%s' password='%s' dbname='%s' sslmode='disable'",
 		os.Getenv("DB_HOST"),

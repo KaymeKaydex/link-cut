@@ -2,8 +2,10 @@ package repository
 
 import (
 	"context"
-	"github.com/KaymeKaydex/link-cut.git/internal/app/model"
+
 	"gorm.io/gorm"
+
+	"github.com/KaymeKaydex/link-cut.git/internal/app/model"
 )
 
 type Repository struct {
@@ -14,14 +16,12 @@ func New(db *gorm.DB) *Repository {
 	return &Repository{db: db}
 }
 
-// На основе объекта модели создает запись в базе данных
-
+// CreateContainer на основе объекта модели создает запись в базе данных
 func (r *Repository) CreateContainer(ctx context.Context, c *model.URLContainer) error {
 	return r.db.WithContext(ctx).Create(c).Error
 }
 
-// На основе интерфейса определяте существование строки в таблице
-
+// Exists на основе интерфейса определяте существование строки в таблице
 func (r *Repository) Exists(ctx context.Context, url IURL) bool {
 	return url.Exists(ctx, r)
 }
@@ -37,27 +37,30 @@ type IURL interface {
 	GetContainer(ctx context.Context, r *Repository) (*model.URLContainer, error)
 }
 
-// For SHORT URL
-
+// ShortURL is container for SHORT URL
 type ShortURL struct {
 	URL string
 }
 
 func (url *ShortURL) Exists(ctx context.Context, r *Repository) bool {
 	var foundContainer model.URLContainer
+
 	err := r.db.WithContext(ctx).Where(&model.URLContainer{ShortUrl: url.URL}).First(&foundContainer).Error
 	if err != nil {
 		return false
 	}
+
 	return true
 }
 
 func (url *ShortURL) GetContainer(ctx context.Context, r *Repository) (*model.URLContainer, error) {
 	var foundContainer model.URLContainer
+
 	err := r.db.WithContext(ctx).Where(&model.URLContainer{ShortUrl: url.URL}).First(&foundContainer).Error
 	if err != nil {
 		return nil, err
 	}
+
 	return &foundContainer, nil
 }
 
@@ -69,17 +72,21 @@ type LongURL struct {
 
 func (url *LongURL) Exists(ctx context.Context, r *Repository) bool {
 	var foundContainer model.URLContainer
+
 	err := r.db.WithContext(ctx).Where(&model.URLContainer{LongUrl: url.URL}).First(&foundContainer).Error
 	if err != nil {
 		return false
 	}
+
 	return true
 }
 func (url *LongURL) GetContainer(ctx context.Context, r *Repository) (*model.URLContainer, error) {
 	var foundContainer model.URLContainer
+
 	err := r.db.WithContext(ctx).Where(&model.URLContainer{LongUrl: url.URL}).First(&foundContainer).Error
 	if err != nil {
 		return nil, err
 	}
+
 	return &foundContainer, nil
 }

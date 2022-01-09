@@ -2,9 +2,11 @@ package main
 
 import (
 	"context"
-	"github.com/KaymeKaydex/link-cut.git/internal/pkg/app"
+
 	"github.com/joho/godotenv"
 	jww "github.com/spf13/jwalterweatherman"
+
+	"github.com/KaymeKaydex/link-cut.git/internal/pkg/app"
 )
 
 func main() {
@@ -22,6 +24,7 @@ func main() {
 
 	if err := godotenv.Load(); err != nil {
 		jww.ERROR.Println("No .env file loaded")
+
 		return
 	}
 
@@ -30,6 +33,7 @@ func main() {
 	a, err := app.NewApp(ctx)
 	if err != nil {
 		jww.ERROR.Println("Cant create new application : ", err)
+
 		return
 	}
 
